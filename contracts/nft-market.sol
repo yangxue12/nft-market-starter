@@ -21,7 +21,8 @@ contract Market{
     mapping(uint256 => Order) public orderOfId;
     Order[] public orders;
     mapping(uint256 => uint256) public idToOrderIndex;
-
+    mapping(uint256 => uint256) public prices;
+    
     event Deal(address seller, address buyer, uint256 tokenId,uint256 price);
     event NewOrder(address seller,uint256 tokenId,uint256 price);
     event PriceChanged(address seller, uint256 tokenId,uint256 previousPrice, uint256 price);
@@ -118,5 +119,8 @@ contract Market{
             }
         }
         return myOrders;
+    }
+    function getPrice(uint256 tokenId) external view returns (uint256) {
+        return prices[tokenId];
     }
 }

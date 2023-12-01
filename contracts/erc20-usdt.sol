@@ -2,15 +2,10 @@
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract cUSDT is ERC20, Ownable {
-    constructor(address initialOwner)
-        ERC20("fake usdt in yangxue", "cUSDT")
-        Ownable(initialOwner)
-    {}
 
-    function mint(address to, uint256 amount) public onlyOwner {
-        _mint(to, amount);
+contract cUSDT is ERC20{
+    constructor()ERC20("fake usdt in cbi", "cUSDT")  {
+        _mint(msg.sender, 1 * 10 ** 8 * 10 **18);
     }
 }

@@ -13,6 +13,10 @@ contract NFTM is ERC721, ERC721Enumerable, Ownable {
         Ownable(initialOwner)
     {}
 
+    function _baseURI() internal pure override returns (string memory) {
+        return "https://cbisample.com/";
+    }
+
     function safeMint(address to) public onlyOwner {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
