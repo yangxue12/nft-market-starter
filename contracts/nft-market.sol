@@ -69,9 +69,10 @@ contract Market{
     function isListed(uint256 _tokenId) public view returns (bool){
         return orderOfId[_tokenId].seller !=address(0);
     }
-    function onERC721Received (address operator, address from, uint256 tokenId,bytes calldata data) external returns (bytes4) {
+    function onERC721Received (address operator , address from, uint256 tokenId,bytes calldata data) external returns (bytes4) {
         uint256 price=toUint256(data,0);
         require(price>0,"price must be greater than 0");
+        require(operator == from, "Market: Seller must be operator");
 
         orders.push(Order(from,tokenId,price));
         orderOfId[tokenId]=Order(from,tokenId,price);
